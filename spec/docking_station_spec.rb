@@ -9,8 +9,14 @@ describe DockingStation do
     end
 
     it 'releases working bikes' do
-      bike = subject.release_bike
+      bike = Bike.new
+      subject.dock_bike(bike)
+      subject.release_bike
       expect(bike).to be_working
+    end
+
+    it 'raises an error if #release_bike is called and none are avaliable' do
+      expect {subject.release_bike}.to raise_error('No bikes avaliable.')
     end
   end
 
