@@ -56,8 +56,7 @@ describe 'Features' do
 
     it 'A station has a pre-set capacity of 20 bikes' do
       ds = DockingStation.new
-      20.times {ds.dock_bike(bike)}
-      expect(ds).to be_full
+      expect(ds.capacity).to eq(20)
     end
   end
 end
