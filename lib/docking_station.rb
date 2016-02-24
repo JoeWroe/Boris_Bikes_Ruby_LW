@@ -2,7 +2,7 @@ require_relative 'bike'
 
 class DockingStation
 
-  attr_reader :bike
+  attr_reader :bikes
 
   def initialize
     @bikes = []
@@ -10,11 +10,11 @@ class DockingStation
 
   def release_bike(bike)
       raise Exception.new("No bikes avaliable.") if @bikes.empty?
-      bike
+      @bikes.delete(bike)
   end
 
   def dock_bike(bike)
-    raise Exception.new("Docking station full.") if @bikes.length == 20
+    raise Exception.new("Docking station full.") if full?
     @bikes << bike
   end
 

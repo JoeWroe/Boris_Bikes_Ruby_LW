@@ -6,6 +6,18 @@ describe 'Features' do
   subject(:ds)   {DockingStation.new}
   subject(:bike) {Bike.new}
 
+  describe 'USER STORY ONE' do
+    # As a person,
+    # So that I can use a bike,
+    # I'd like a docking station to release a bike.
+
+    it 'A docking station can release a bike' do
+      ds.dock_bike(bike)
+      ds.release_bike(bike)
+      expect(ds.bikes).to be_empty
+    end
+  end
+
   describe 'USER STORY THREE' do
     # As a member of the public
     # So I can return bikes I've hired
@@ -32,8 +44,8 @@ describe 'Features' do
     # I'd like docking stations not to accept more bikes than their capacity.
 
     it 'A full station raises an error if another #dock_bike is attempted' do
-      20.times {ds.dock_bike(Bike.new)}
-      expect {ds.dock_bike(Bike.new)}.to raise_error('Docking station full.')
+      20.times {ds.dock_bike(bike)}
+      expect {ds.dock_bike(bike)}.to raise_error('Docking station full.')
     end
   end
 
@@ -44,7 +56,7 @@ describe 'Features' do
 
     it 'A station has a pre-set capacity of 20 bikes' do
       ds = DockingStation.new
-      20.times {ds.dock_bike(Bike.new)}
+      20.times {ds.dock_bike(bike)}
       expect(ds).to be_full
     end
   end
