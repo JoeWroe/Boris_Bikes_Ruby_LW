@@ -13,4 +13,11 @@ describe DockingStation do
       expect(bike).to be_working
     end
   end
+
+  describe 'when docking a bike' do
+
+    it 'responds to #dock_bike' do
+      expect(subject).to respond_to :dock_bike
+    end
+  end
 end
