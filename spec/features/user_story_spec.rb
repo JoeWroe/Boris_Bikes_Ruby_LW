@@ -44,7 +44,7 @@ describe 'Features' do
     # I'd like docking stations not to accept more bikes than their capacity.
 
     it 'A full station raises an error if another #dock_bike is attempted' do
-      20.times {ds.dock_bike(bike)}
+      DockingStation::DEFAULT_CAPACITY.times {ds.dock_bike(bike)}
       expect {ds.dock_bike(bike)}.to raise_error('Docking station full.')
     end
   end
@@ -54,9 +54,19 @@ describe 'Features' do
     # So that I can plan the distribution of bikes,
     # I want a docking station to have a default capacity of 20 bikes.
 
-    it 'A station has a pre-set capacity of 20 bikes' do
-      ds = DockingStation.new
-      expect(ds.capacity).to eq(20)
+    it 'A station has a pre-set default capacity' do
+      expect(ds.capacity).to eq(DockingStation::DEFAULT_CAPACITY)
+    end
+  end
+
+  describe 'USER STORY EIGHT' do
+    # As a system maintainer,
+    # So that busy areas can be served more effectively,
+    # I want to be able to specify a larger capacity when necessary.
+
+    it 'The client has the ability to set the capacity of a station' do
+      ds50 = DockingStation.new(50)
+      expect(ds50.capacity).to eq(50)
     end
   end
 end

@@ -9,7 +9,7 @@ describe DockingStation do
   describe 'management' do
 
     it 'can accept 20 bikes' do
-      expect{20.times {ds.dock_bike(Bike.new)}}.not_to raise_error
+      expect{DockingStation::DEFAULT_CAPACITY.times {ds.dock_bike(Bike.new)}}.not_to raise_error
     end
   end
 
