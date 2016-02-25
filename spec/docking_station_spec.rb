@@ -20,9 +20,8 @@ describe DockingStation do
     end
 
     it 'releases working bikes' do
-      allow(bike).to receive(:working?).and_return(true)
+      allow(bike).to receive(:working).and_return(true)
       ds.dock_bike(bike)
-      expect(bike).to be_working
       expect(ds.release_bike(bike)).to eq(bike)
     end
 

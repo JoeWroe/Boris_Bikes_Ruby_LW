@@ -13,8 +13,13 @@ class DockingStation
   end
 
   def release_bike(bike)
-      raise Exception.new("No bikes avaliable.") if bikes.empty?
+    if bikes.empty?
+      raise Exception.new("No bikes avaliable.")
+    elsif bike.working == false
+      raise Exception.new("No working bikes avaliable.")
+    else
       bikes.delete(bike)
+    end
   end
 
   def dock_bike(bike)

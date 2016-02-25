@@ -80,4 +80,17 @@ describe 'Features' do
       expect(bike.working).to eq(false)
     end
   end
+
+  describe 'USER STORY TEN' do
+    # As a maintainer of the system,
+    # So that I can manage broken bikes and not disappoint users,
+    # I'd like docking stations not to release broken bikes.
+
+    it 'A docking station will not release a bike if it is broken' do
+      bike.report_broken
+      ds.dock_bike(bike)
+      expect{ds.release_bike(bike)}.to raise_error('No working bikes avaliable.')
+      expect(ds.bikes.length).to eq(1)
+    end
+  end
 end
