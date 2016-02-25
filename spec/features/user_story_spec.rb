@@ -3,8 +3,10 @@ require 'bike'
 
 describe 'Features' do
 
-  subject(:ds)   {DockingStation.new}
-  subject(:bike) {Bike.new}
+  subject(:ds)     {DockingStation.new}
+  subject(:bike)   {Bike.new}
+  subject(:van)    {Van.new}
+  subject(:garage) {Garage.new}
 
   describe 'USER STORY ONE' do
     # As a person,
@@ -93,4 +95,28 @@ describe 'Features' do
       expect(ds.bikes.length).to eq(1)
     end
   end
+
+  describe 'USER STORY ELEVEN' do
+    # As a maintainer of the system,
+    # So that I can manage broken bikes and not disappoint users,
+    # I'd like vans to take broken bikes from docking stations and deliver them to garages to be fixed.
+
+    it 'Vans can pick up broken bikes and deliver them to garages' do
+      bike.report_broken
+      ds.dock_bike(bike)
+      van.collect_broken_bikes
+      garage.unload_van(van)
+      expect(garage.bikes).to eq([bike])
+      expect(bike.working).to eq(false)
+    end
+  end
 end
+
+# NEXT TEST SHOULD SIMULATE....
+# Joe@Joes-MacBook-Pro~/Projects/Makers/Course/Week_#6/Boris_Bikes_LW ✖                                                                                                                   ☂ master⭃ ⌚ 13:27:35
+# $ irb
+# 2.2.3 :001 > ds = "Docking"
+#  => "Docking"
+# 2.2.3 :002 > van = "Van"
+#  => "Van"
+# 2.2.3 :003 > ds.accept_bikes(van.release_bikes)

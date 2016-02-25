@@ -73,3 +73,10 @@ As a maintainer of the system,
 So that I can manage broken bikes and not disappoint users,
 I'd like docking stations not to release broken bikes.
 ```
+
+```
+USER STORY ELEVEN
+As a maintainer of the system,
+So that I can manage broken bikes and not disappoint users,
+I'd like vans to take broken bikes from docking stations and deliver them to garages to be fixed.
+```
